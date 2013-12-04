@@ -21,7 +21,7 @@
 	      (cons new (cdr lat))))
        (else (cons (car lat) 
 		   (insertR new old
-			    (cdr lat)))))))))
+			    (cdr lat))))))))))
 
-(insertR 'testR 'cup '(coffee cup tea cup and kick cup))
+
 (multiinsertR 'testR 'cup '(coffee cup tea cup and kick cup))

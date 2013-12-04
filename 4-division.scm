@@ -1,5 +1,4 @@
 (load "add1.scm")
-(load "sub1.scm")
 (load "4-<.scm")
 (load "4-minus.scm")
 
@@ -10,4 +9,4 @@
      (else
       (add1 (division (minus n m) m))))))
 
-
+(division 15 4)
