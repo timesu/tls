@@ -1,3 +1,5 @@
+(load "4-eqan.scm")
+
 (define equal?
   (lambda (s1 s2)
     (cond
