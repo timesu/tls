@@ -20,3 +20,4 @@
 
 (set-2 '(apples peaches apples plum))
 (set-2 '(apple 3 pear 4 9 apples 3))
+(set-2 '(apple pear 3))
