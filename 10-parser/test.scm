@@ -29,3 +29,27 @@
 
 (meaning '(lambda(x) (cons x y)) '(((y z) ((8) 9)))
 		 )
+
+(value
+  '((lambda (x)
+      (cons x (quote ())))
+    (quote (foo bar baz)))) 
+
+(value '(add1 6))
+(value '(eq? 2 1))
+(meaning '(add1 6))
+(value '(quote hello))
+(value '(quote (a b c))) 
+(value '(car (quote (a b c))))  
+(value '(cdr (quote (a b c)))) 
+(value
+  '((lambda (x)
+      (cons x (quote ())))
+    (quote (foo bar baz)))) 
+(value '(((lambda (y) (lambda (x) 1) y) 4)  3))
+(value '(((lambda (y) (lambda (x) x) y) 4)  3))
+(value '(((lambda (x y) (lambda (u) (cond (u x) (t y)))) 1 '()) null))
+(value '((lambda (x) ((lambda (x) (add1 x)) (add1 4))) 6))
+(value '((lambda (y) (((lambda (y) (lambda (x) (* y 2))) 3) 0)) 4))
+(value '(+ 1 2))
+;//=> ()

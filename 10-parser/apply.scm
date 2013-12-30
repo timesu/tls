@@ -5,6 +5,8 @@
 (define atom-to-action
   (lambda (e)
     (cond
+   ;  (display atom-to-action)
+   ;  (newline)
      ((number? e) *const)
      ((eq? e #t) *const)
      ((eq? e #f) *const)
@@ -36,16 +38,20 @@
 
 (define expression-to-action
   (lambda (e)
+  ;  (display expression-to-action)
+  ;  (newline)
     (cond
-     ((atom? e)(atom-to-action e))
+     ((atom-for-apply e)(atom-to-action e))
       (else (list-to-action e)))))
 
 (define meaning
   (lambda (e table)
+ ;   (display meaning)(newline)
     ((expression-to-action e) e table)))
 
 (define value
   (lambda (e)
+;    (display value)(newline)
     (meaning e (quote()))))
 
 (define evcon
