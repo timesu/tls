@@ -49,15 +49,45 @@
 	       (else
 		(cond
 		 ((eqlist?
-		   (R (car l))
+		   (R (car l)) ;;Issue here
 		   (car l))
 		  (cons (car l)
 			(R (cdr l))))
-		 (else (cons (R (car l))
+		 (else (cons (R (car l)) ;;Issue here
 			     (cdr l)))))))))
       (R l))))
 
 (rember1*-letrec 'meat '((pasta meat) 
+		  pasta
+		  (noodles meat sauce)
+		  meat tomatoes))
+
+
+;;The Fiftenth Commandment
+;;Use (let..) to name the values of
+;;repeated expressions
+;;rember1*-let
+
+(define rember1*-let
+  (lambda (a l)
+    (letrec
+	((R (lambda (l)
+	      (cond
+	       ((null? l) (quote()))
+	       ((atom? (car l))
+		(cond
+		 ((eq? (car l) a) (cdr l))
+		 (else (cons (car l)
+			     (R (cdr l))))))
+	       (else
+		(let ((av (R (car l))))
+		  (cond
+		   ((eqlist? (car l) av)
+		    (cons (car l) (R (cdr l))))
+		   (else (cons av (cdr l))))))))))
+	    (R l))))
+
+(rember1*-let 'meat '((pasta meat) 
 		  pasta
 		  (noodles meat sauce)
 		  meat tomatoes))
