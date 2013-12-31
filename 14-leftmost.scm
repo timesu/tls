@@ -42,3 +42,22 @@
 
 (leftmost-let '(((a) b) (c d)))
 (leftmost-let '(((() a) ())))
+
+
+;;let version
+
+(define leftmost
+  (lambda (l)
+    (let/cc skip
+	    (lm l skip))))
+
+(define lm
+  (lambda (l out)
+    (cond
+     ((null? l) (quote()))
+     ((atom? (car l)) (out (car l)))
+     (else (let ()
+	     (lm (car l) out)
+	     (lm (cdr l) out))))))
+
+(leftmost '(((a)) b (c)))
