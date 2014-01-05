@@ -1,4 +1,4 @@
-;;16-length.scm
+x;;16-length.scm
 
 ;;normal version
 (define length
@@ -75,3 +75,40 @@
     h2-a))
 
 ;;Third version
+;;Eliminate version
+
+(define L
+  (lambda (length)
+    (lambda (l)
+      (cond
+       ((null? l) 0)
+       (else
+	(add1 (length (cdr l))))))))
+
+(define length-e
+  (let ((h (lambda (l) 0)))
+	(set! h
+	      (L (lambda (arg) (h arg))))
+	h))
+
+(length-e '(a b c d))
+
+(define Y-N
+  (lambda (L)
+    (let ((h (lambda (l) (quote()))))
+	  (set! h
+		(L (lambda (arg) (h arg))))
+	  h)))
+
+;;equal
+(define Y-letrec
+  (lambda (f)
+    (letrec 
+	((h (f (lambda (arg) (h arg)))))
+      h)))
+
+;;final version
+
+(define length-final (Y-N L))
+
+(length-final '(a b c d))

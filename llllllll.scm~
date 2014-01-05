@@ -1,0 +1,5 @@
+;;lllllll.scm
+;;Test for letrec , let , let/cc
+
+;;letrec
+;;noremal version multirember
